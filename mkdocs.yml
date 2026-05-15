@@ -1,10 +1,10 @@
-site_name: dnd-tools
+site_name: frp-tools
 site_description: An MCP server with tools related to Fantasy Role Playing games, to assist DMs.
 site_author: Sinan Ozel
-site_url: https://sinanozel.github.io/dnd-tools/
+site_url: https://sinanozel.github.io/frp-tools/
 
-repo_name: sinanozel/dnd-tools
-repo_url: https://github.com/sinanozel/dnd-tools
+repo_name: sinanozel/frp-tools
+repo_url: https://github.com/sinanozel/frp-tools
 
 theme:
   name: material

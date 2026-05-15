@@ -3,7 +3,7 @@ services:
     build:
       context: ..
       dockerfile: lint/Dockerfile
-    image: dnd-tools-lint:latest
+    image: frp-tools-lint:latest
     working_dir: /workspace
     volumes:
       - ..:/workspace

@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dnd-tools"
+name = "frp-tools"
 dynamic = ["version"]
 description = "An MCP server with tools related to Fantasy Role Playing games, to assist DMs."
 readme = "README.md"
@@ -77,6 +77,6 @@ include = ["server*"]
 version = { attr = "server.__version__" }
 
 [project.urls]
-Homepage = "https://github.com/sinanozel/dnd-tools"
-Issues = "https://github.com/sinanozel/dnd-tools/issues"
-Documentation = "https://sinanozel.github.io/dnd-tools/"
+Homepage = "https://github.com/sinanozel/frp-tools"
+Issues = "https://github.com/sinanozel/frp-tools/issues"
+Documentation = "https://sinanozel.github.io/frp-tools/"

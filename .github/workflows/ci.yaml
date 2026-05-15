@@ -1,7 +1,7 @@
 name: CI/CD Pipeline
 
 env:
-  SERVER_NAME: dnd-tools
+  SERVER_NAME: frp-tools
 
 on:
   push:

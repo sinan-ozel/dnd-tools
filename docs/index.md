@@ -1,4 +1,4 @@
-# dnd-tools
+# frp-tools
 
 An MCP server with tools related to Fantasy Role Playing games, to assist DMs.
 
@@ -25,8 +25,8 @@ Renders markdown text onto a parchment background image and returns a base64-enc
 
 ```yaml
 services:
-  dnd-tools:
-    image: sinanozel/dnd-tools:latest
+  frp-tools:
+    image: sinanozel/frp-tools:latest
     ports:
       - "8000:8000"
     volumes:

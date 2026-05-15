@@ -1,6 +1,6 @@
-![CI/CD](https://github.com/sinanozel/dnd-tools/actions/workflows/ci.yaml/badge.svg?branch=main)
-![Docker Hub](https://img.shields.io/docker/v/sinanozel/dnd-tools?label=Docker%20Hub)
-![License](https://img.shields.io/github/license/sinanozel/dnd-tools.svg)
+![CI/CD](https://github.com/sinanozel/frp-tools/actions/workflows/ci.yaml/badge.svg?branch=main)
+![Docker Hub](https://img.shields.io/docker/v/sinanozel/frp-tools?label=Docker%20Hub)
+![License](https://img.shields.io/github/license/sinanozel/frp-tools.svg)
 
 # DnD Tools MCP Server
 
@@ -48,8 +48,8 @@ Returns an error string if the text is too large to fit within the margins.
 ### 1. Clone and build
 
 ```bash
-git clone https://github.com/sinanozel/dnd-tools.git
-cd dnd-tools
+git clone https://github.com/sinanozel/frp-tools.git
+cd frp-tools
 ```
 
 ### 2. Mount your parchment background image

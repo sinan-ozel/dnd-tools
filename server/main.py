@@ -13,7 +13,7 @@ from server.parchment import (
     render_parchment,
 )
 
-mcp = FastMCP("dnd-tools")
+mcp = FastMCP("frp-tools")
 
 
 class _SuppressMCPUnionValidation(logging.Filter):
