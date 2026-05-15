@@ -1,14 +1,40 @@
-![CI/CD](https://github.com/<ORGANIZATION>/<SERVER-NAME>/actions/workflows/ci.yaml/badge.svg?branch=main)
-![Docker Hub](https://img.shields.io/docker/v/<ORGANIZATION>/<SERVER-NAME>?label=Docker%20Hub)
-![License](https://img.shields.io/github/license/<ORGANIZATION>/<SERVER-NAME>.svg)
+![CI/CD](https://github.com/sinanozel/dnd-tools/actions/workflows/ci.yaml/badge.svg?branch=main)
+![Docker Hub](https://img.shields.io/docker/v/sinanozel/dnd-tools?label=Docker%20Hub)
+![License](https://img.shields.io/github/license/sinanozel/dnd-tools.svg)
 
-# MCP Server Template
+# DnD Tools MCP Server
 
-A production-ready template for building [Model Context Protocol (MCP)](https://modelcontextprotocol.io) servers in Python. Everything runs through Docker Compose — no local Python installation required beyond Docker itself.
+An MCP server with tools related to Fantasy Role Playing games, to assist Dungeon Masters. Built with [FastMCP](https://github.com/jlowin/fastmcp) and running on Docker — no local Python installation required.
+
+## Tools
+
+### `markdown_to_parchment`
+
+Renders markdown text onto a parchment background image and returns a base64-encoded PNG.
+
+**Inputs:**
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `markdown_text` | string | required | Markdown to render (supports `#` headings, `**bold**`, `*italic*`, `- lists`) |
+| `background_image_path` | string | required | Path to the parchment background image inside the container |
+| `font` | enum | `cinzel` | `cinzel` — classical Roman style; `im_fell_english` — historical English document style |
+| `font_size` | int | `20` | Base font size in px (12–48). Headings scale proportionally. |
+| `margin_x` | int | `80` | Left/right margin in pixels |
+| `margin_y` | int | `80` | Top/bottom margin in pixels |
+
+Returns an error string if the text is too large to fit within the margins.
+
+**Providing the background image:** mount a directory into the container (see Quickstart) and pass the in-container path, e.g. `/images/parchment.png`.
+
+**Fonts (SIL Open Font License):**
+- **Cinzel** — elegant all-caps Roman style, ideal for titles and formal text
+- **IM Fell English** — historical English document feel, with an italic variant
 
 ## What's Included
 
-- **MCP server skeleton** — `server/main.py` using [FastMCP](https://github.com/jlowin/fastmcp) with **Streamable HTTP + SSE** transport on port 8000
+- **MCP server** — `server/main.py` using FastMCP with **Streamable HTTP** transport on port 8000
+- **Business logic** — `server/parchment.py` (importable independently of MCP)
 - **Containerized tooling** — reformat, lint, validate-docs, and test all run via `docker compose`
 - **MCP Inspector** — visual browser UI for testing and debugging your tools
 - **Automated CI/CD** — GitHub Actions that reformat on branches, lint + test on every push, publish to Docker Hub on main
@@ -19,64 +45,33 @@ A production-ready template for building [Model Context Protocol (MCP)](https://
 
 ## Quickstart
 
-### 1. Create a repo from this template
-
-Click **"Use this template"** on GitHub.
-
-### 2. Replace placeholders
-
-Find and replace these strings across the entire repo:
-
-| Placeholder | Replace with | Used in |
-|---|---|---|
-| `<SERVER-NAME>` | `my-mcp-server` (hyphenated) | Docker image names, GitHub URLs, workflow env |
-| `<SERVER_NAME>` | `my_mcp_server` (underscored) | Not currently used — reserved if you rename `server/` |
-| `<ORGANIZATION>` | Your GitHub username or org | URLs, badges |
-
-Run this to find all occurrences:
-```bash
-grep -r "<SERVER-NAME>\|<ORGANIZATION>" --include="*.yaml" --include="*.toml" --include="*.md" --include="*.py" .
-```
-
-### 3. Rename `server/` to your module name (optional but recommended)
+### 1. Clone and build
 
 ```bash
-mv server/ my_mcp_server/
-# Then update every reference to `server/` in:
-#   Dockerfile, reformat/Dockerfile, lint/Dockerfile, docs-validate/Dockerfile,
-#   tests/Dockerfile, tests/docker-compose.yaml, reformat/reformat.sh,
-#   lint/lint.sh, pyproject.toml ([tool.setuptools.packages.find] and
-#   [tool.setuptools.dynamic]), .github/workflows/ci.yaml (Get Current Version step)
+git clone https://github.com/sinanozel/dnd-tools.git
+cd dnd-tools
 ```
 
-### 4. Write your version into `server/__init__.py`
+### 2. Mount your parchment background image
 
-```python
-__version__ = "0.1.0"
+Add a volume mount so the container can read your image. Edit `docker-compose.yaml` (or pass `-v`) to mount the directory containing your background image:
+
+```yaml
+volumes:
+  - /path/to/your/images:/images:ro
 ```
 
-### 5. Fill in `pyproject.toml`
+Then pass `/images/parchment.png` as `background_image_path` in the tool.
 
-- Set `name`, `description`, `authors`
-- Update `[project.urls]`
+### 3. Run the server
 
-### 6. Add your MCP tools in `server/main.py`
-
-```python
-from fastmcp import FastMCP
-
-mcp = FastMCP("my-mcp-server")
-
-@mcp.tool()
-def my_tool(param: str) -> str:
-    """Do something useful."""
-    return f"Result: {param}"
-
-if __name__ == "__main__":
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)
+```bash
+docker compose up --build
 ```
 
-### 7. Set up Docker Hub secrets in GitHub
+The MCP endpoint is at `http://localhost:8000/mcp`.
+
+### 4. Set up Docker Hub secrets in GitHub
 
 Go to **Settings → Secrets and variables → Actions** and add:
 

@@ -1,10 +1,10 @@
-site_name: <SERVER-NAME>
-site_description: ...
-site_author: <AUTHOR-NAME>
-site_url: https://<ORGANIZATION>.github.io/<SERVER-NAME>/
+site_name: dnd-tools
+site_description: An MCP server with tools related to Fantasy Role Playing games, to assist DMs.
+site_author: Sinan Ozel
+site_url: https://sinanozel.github.io/dnd-tools/
 
-repo_name: <ORGANIZATION>/<SERVER-NAME>
-repo_url: https://github.com/<ORGANIZATION>/<SERVER-NAME>
+repo_name: sinanozel/dnd-tools
+repo_url: https://github.com/sinanozel/dnd-tools
 
 theme:
   name: material

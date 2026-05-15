@@ -3,23 +3,23 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<SERVER-NAME>"
+name = "dnd-tools"
 dynamic = ["version"]
-description = ""
+description = "An MCP server with tools related to Fantasy Role Playing games, to assist DMs."
 readme = "README.md"
 authors = [
-    { name = "", email = "" },
+    { name = "Sinan Ozel", email = "coding@sinan.slmail.me" },
 ]
 license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
     "fastmcp>=3.2.4",
     "uvicorn>=0.30.0",
+    "Pillow>=10.0.0",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
 ]
 
 [project.optional-dependencies]
@@ -77,6 +77,6 @@ include = ["server*"]
 version = { attr = "server.__version__" }
 
 [project.urls]
-Homepage = "https://github.com/<ORGANIZATION>/<SERVER-NAME>"
-Issues = "https://github.com/<ORGANIZATION>/<SERVER-NAME>/issues"
-Documentation = "https://<ORGANIZATION>.github.io/<SERVER-NAME>/"
+Homepage = "https://github.com/sinanozel/dnd-tools"
+Issues = "https://github.com/sinanozel/dnd-tools/issues"
+Documentation = "https://sinanozel.github.io/dnd-tools/"

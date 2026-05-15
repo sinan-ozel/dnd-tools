@@ -14,6 +14,8 @@ services:
       timeout: 5s
       retries: 12
       start_period: 20s
+    volumes:
+      - ../server/assets:/app/server/assets:ro
     environment:
       - PYTHONUNBUFFERED=1
 
